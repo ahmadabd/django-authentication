@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    {% if from.errors %}
+      <p>there is sth wrong with what you entered!</p>
+    {% endif %}
+
+    {% if next %}
+      <p>Hey you can access that page</p>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+
+      <p>username: {{ form.username }}</p>
+      <p>password: {{ form.password }}</p>
+      
+      <p><input type="submit" name="submit" value="login"></p>
+      <input type="hidden" name="next" value="{{ next }}">
+    </form>
+  </body>
+</html>
