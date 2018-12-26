@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>The index</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+
+{% block title %}
+  Index
+{% endblock %}
+
+{% block content %}
     <h1>this is index page</h1>
 
     {% if user.is_authenticated %}
@@ -12,5 +12,6 @@
     {% else %}
       <h2>your not login</h2>
     {% endif %}
-  </body>
-</html>
+
+    <p>number of users:{{ count }}</p>
+{% endblock %}

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Login</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+
+{% block title %}
+  The login
+{% endblock %}
+
+{% block content %}
+  <h2>Login page!</h2>
     {% if from.errors %}
       <p>there is sth wrong with what you entered!</p>
     {% endif %}
@@ -18,9 +19,8 @@
 
       <p>username: {{ form.username }}</p>
       <p>password: {{ form.password }}</p>
-      
+
       <p><input type="submit" name="submit" value="login"></p>
       <input type="hidden" name="next" value="{{ next }}">
     </form>
-  </body>
-</html>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <a href="{% url 'index' %}">Home</a> \
+    <a href="{% url 'register' %}">Register</a> \
+    <a href="{% url 'login' %}">Login</a> \
+    <br>
+    <h1>Test wesite for authenthicate</h1>
+    {% block content %}
+
+    {% endblock %}
+  </body>
+</html>

@@ -1,20 +1,20 @@
-  <!DOCTYPE html>
-  <html lang="en" dir="ltr">
-    <head>
-      <meta charset="utf-8">
-      <title>Register</title>
-    </head>
-    <body>
-      <h1>Registration page!</h1>
+{% extends 'base.html' %}
+
+{% block title %}
+  The register
+{% endblock %}
+
+{% block content %}
+      <h2>Registration page!</h2>
       <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         {% if form.errors %}
           <p>There are some error in the form</p>
         {% endif %}
 
-        {{ form }}
+        {{ form.as_p }}
 
         <input type="submit" value="register">
       </form>
-    </body>
-  </html>
+
+{% endblock %}
