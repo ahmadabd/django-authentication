@@ -4,17 +4,23 @@
   The register
 {% endblock %}
 
+
 {% block content %}
-      <h2>Registration page!</h2>
-      <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        {% if form.errors %}
-          <p>There are some error in the form</p>
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+          <small style="color: grey">{{ field.help_text }}</small>
         {% endif %}
-
-        {{ form.as_p }}
-
-        <input type="submit" value="register">
-      </form>
-
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+    <button type="submit">Sign up</button>
+  </form>
 {% endblock %}
