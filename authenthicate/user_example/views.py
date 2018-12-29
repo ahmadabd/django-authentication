@@ -2,12 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-
 from django.views.decorators.csrf import csrf_exempt
-
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
+from user_example.models import userPhone
 from .forms import SignUpForm
 
 # Create your views here.
@@ -26,6 +23,10 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            phone_number = form.cleaned_data.get('phone_number')
+
+            userPhone.objects.create(user = username, phone = phone_number)
+
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
