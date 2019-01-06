@@ -3,17 +3,16 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
 from user_example.models import userPhone
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 @csrf_exempt
-@login_required
 def index(request):
     count = User.objects.count()        ### Count number of users that are login
-    return render(request, 'user_example/index.html', { 'count' : count})
+    return render(request, 'user_example/index.html', { 'count' : count })
 
 @csrf_exempt
 def register(request):
@@ -32,4 +31,10 @@ def register(request):
             return redirect('/')
     else:
         form = SignUpForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form })
+
+@login_required
+@csrf_exempt
+def secret_page(request):
+    return render(request, 'secret_page.html')
+    
